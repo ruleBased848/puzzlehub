@@ -1,0 +1,21 @@
+.cell {
+  background-color: white;
+  width: 86px;
+  height: 86px;
+}
+
+.board-background {
+  background-color: black;
+  width: 800px;
+  height: 800px;
+}
+
+.box-row {
+  display: flex;
+  flex-direction: row;
+}
+
+.board-row {
+  display: flex;
+  flex-direction: row;
+}
