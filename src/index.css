@@ -7,6 +7,11 @@
   width: 86px;
 }
 
+.selected-cell {
+  background-color: pink;
+  width: 86px;
+}
+
 .board-background {
   background-color: black;
   width: 800px;
