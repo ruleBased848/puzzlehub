@@ -33,9 +33,7 @@ function BoardRow() {
 function Board() {
   return (
     <div className="board-background">
-      <BoardRow />
-      <BoardRow />
-      <BoardRow />
+      {Array(3).fill().map((e, i) => <BoardRow key={i} />)}
     </div>
   );
 }
