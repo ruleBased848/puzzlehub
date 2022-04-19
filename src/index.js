@@ -9,9 +9,7 @@ function Cell() {
 function BoxRow() {
   return (
     <div className="box-row">
-      <Cell />
-      <Cell />
-      <Cell />
+      {Array(3).fill().map((e, i) => <Cell key={i} />)}
     </div>
   );
 }
