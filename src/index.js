@@ -25,9 +25,7 @@ function Box() {
 function BoardRow() {
   return (
     <div className="board-row">
-      <Box />
-      <Box />
-      <Box />
+      {Array(3).fill().map((e, i) => <Box key={i} />)}
     </div>
   );
 }
