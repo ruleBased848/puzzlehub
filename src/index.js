@@ -6,24 +6,22 @@ function Cell() {
   return <div className="cell" />;
 }
 
+function BoxRow() {
+  return (
+    <div className="box-row">
+      <Cell />
+      <Cell />
+      <Cell />
+    </div>
+  );
+}
+
 function Box() {
   return (
     <div className="box">
-      <div className="box-row">
-        <Cell />
-        <Cell />
-        <Cell />
-      </div>
-      <div className="box-row">
-        <Cell />
-        <Cell />
-        <Cell />
-      </div>
-      <div className="box-row">
-        <Cell />
-        <Cell />
-        <Cell />
-      </div>
+      <BoxRow />
+      <BoxRow />
+      <BoxRow />
     </div>
   );
 }
