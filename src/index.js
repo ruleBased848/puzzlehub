@@ -2,10 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-class Cell extends React.Component {
-  render() {
-    return <div className="cell" />;
-  }
+function Cell() {
+  return <div className="cell" />;
 }
 
 function Box() {
@@ -40,28 +38,24 @@ function BoardRow() {
   );
 }
 
-class Board extends React.Component {
-  render() {
-    return (
-      <div className="board-background">
-        <BoardRow />
-        <BoardRow />
-        <BoardRow />
-      </div>
-    );
-  }
+function Board() {
+  return (
+    <div className="board-background">
+      <BoardRow />
+      <BoardRow />
+      <BoardRow />
+    </div>
+  );
 }
 
-class Game extends React.Component {
-  render() {
-    return (
-      <div className="game">
-        <div className="game-board">
-          <Board />
-        </div>
+function Game() {
+  return (
+    <div className="game">
+      <div className="game-board">
+        <Board />
       </div>
-    );
-  }
+    </div>
+  );
 }
 
 // ========================================
