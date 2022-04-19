@@ -17,9 +17,7 @@ function BoxRow() {
 function Box() {
   return (
     <div className="box">
-      <BoxRow />
-      <BoxRow />
-      <BoxRow />
+      {Array(3).fill().map((e, i) => <BoxRow key={i} />)}
     </div>
   );
 }
