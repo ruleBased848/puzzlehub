@@ -30,25 +30,23 @@ function Box() {
   );
 }
 
+function BoardRow() {
+  return (
+    <div className="board-row">
+      <Box />
+      <Box />
+      <Box />
+    </div>
+  );
+}
+
 class Board extends React.Component {
   render() {
     return (
       <div className="board-background">
-        <div className="board-row">
-          <Box />
-          <Box />
-          <Box />
-        </div>
-        <div className="board-row">
-          <Box />
-          <Box />
-          <Box />
-        </div>
-        <div className="board-row">
-          <Box />
-          <Box />
-          <Box />
-        </div>
+        <BoardRow />
+        <BoardRow />
+        <BoardRow />
       </div>
     );
   }
