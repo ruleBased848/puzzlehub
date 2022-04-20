@@ -5,11 +5,17 @@
 .cell {
   background-color: white;
   width: 86px;
+  text-align: center;
+  line-height: 86px;
+  font-size: 40px;
 }
 
 .selected-cell {
   background-color: pink;
   width: 86px;
+  text-align: center;
+  line-height: 86px;
+  font-size: 40px;
 }
 
 .board-background {
