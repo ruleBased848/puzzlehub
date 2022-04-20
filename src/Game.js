@@ -1,6 +1,6 @@
 import { selectedCell } from './states';
-import Board from './Board';
-import NumberPad from './NumberPad';
+import Board from './components/Board';
+import NumberPad from './components/NumberPad';
 
 function Game() {
   return (

@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import { updateSelectedCell } from './states';
+import { updateSelectedCell } from '../states';
 
 function Cell({ index, isSelected }) {
   return <div className={isSelected ? "selected-cell" : "cell"} onClick={() => updateSelectedCell(index)} />;
