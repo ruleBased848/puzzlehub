@@ -1,13 +1,15 @@
+import { updateNumbers, selectedCell } from '../states';
+
 function NumberPadRow({ labels }) {
   return (
     <div className="numberpad-row">
-      {Array(3).fill().map((e, i) => <div key={i} className="numberpad-cell">{labels[i]}</div>)}
+      {Array(3).fill().map((e, i) => <div key={i} className="numberpad-cell" onClick={() => updateNumbers(selectedCell, labels[i])}>{labels[i]}</div>)}
     </div>
   );
 }
 
 function NumberPadDelete() {
-  return <div className="numberpad-delete">X</div>;
+  return <div className="numberpad-delete" onClick={() => updateNumbers(selectedCell, "")}>X</div>;
 }
 
 function NumberPad() {
