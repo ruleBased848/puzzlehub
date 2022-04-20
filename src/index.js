@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { action, observable } from 'mobx';
 import { observer } from "mobx-react";
 import './index.css';
@@ -109,7 +109,4 @@ function Game() {
 
 // ========================================
 
-ReactDOM.render(
-  <Game />,
-  document.getElementById('root')
-);
+createRoot(document.getElementById('root')).render(<Game />);
