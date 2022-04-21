@@ -1,6 +1,7 @@
 import { numbers, selectedCell } from './states';
 import Board from './components/Board';
 import NumberPad from './components/NumberPad';
+import Submit from './components/Submit';
 
 function Game() {
   return (
@@ -10,6 +11,9 @@ function Game() {
       </div>
       <div className="numberpad">
         <NumberPad />
+      </div>
+      <div className="submit">
+        <Submit />
       </div>
     </div>
   );
