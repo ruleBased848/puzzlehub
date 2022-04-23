@@ -1,4 +1,5 @@
 import { numbers } from '../states';
+import './Submit.css';
 
 function Submit() {
   const clickHandler = () => {

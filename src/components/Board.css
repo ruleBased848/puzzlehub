@@ -1,0 +1,50 @@
+.cell {
+  background-color: white;
+  width: 86px;
+  text-align: center;
+  line-height: 86px;
+  font-size: 40px;
+}
+
+.selected-cell {
+  background-color: pink;
+  width: 86px;
+  text-align: center;
+  line-height: 86px;
+  font-size: 40px;
+}
+
+.box-row {
+  height: 86px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.box {
+  width: 260px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.board-row {
+  height: 260px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.board-background {
+  background-color: black;
+  width: 800px;
+  height: 800px;
+  padding: 5px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

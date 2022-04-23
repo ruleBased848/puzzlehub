@@ -1,4 +1,5 @@
 import { updateNumbers, selectedCell } from '../states';
+import './NumberPad.css';
 
 function NumberPadRow({ labels }) {
   return (

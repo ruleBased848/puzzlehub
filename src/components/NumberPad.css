@@ -1,0 +1,29 @@
+.numberpad-cell {
+  width: 120px;
+  text-align: center;
+  line-height: 120px;
+  font-size: 40px;
+}
+
+.numberpad-row {
+  height: 120px;
+
+  display: flex;
+  flex-direction: row;
+}
+
+.numberpad-delete {
+  height: 120px;
+  text-align: center;
+  line-height: 120px;
+  font-size: 40px;
+}
+
+.numberpad-background {
+  width: 360px;
+  height: 480px;
+  background-color: pink;
+
+  display: flex;
+  flex-direction: column;
+}

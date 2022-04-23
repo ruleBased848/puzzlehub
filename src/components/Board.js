@@ -1,5 +1,6 @@
 import { observer } from "mobx-react";
 import { updateSelectedCell } from '../states';
+import './Board.css';
 
 const Cell = observer(
   ({ index, number, isSelected }) => {
