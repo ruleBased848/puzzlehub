@@ -15,6 +15,20 @@ public class Main extends HttpServlet
         out.println("abc");
     }
 
+    private boolean isValidBox(String[][] board, int box)
+    {
+        var al = new ArrayList<String>();
+        for (int i = 0; i < 9; ++i)
+        {
+            var str = board[box][i];
+            if (!str.equals(""))
+            {
+                al.add(str);
+            }
+        }
+        return areUnique(al);
+    }
+
     private boolean areUnique(ArrayList<String> al)
     {
         Collections.sort(al);
