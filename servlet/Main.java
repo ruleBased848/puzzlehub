@@ -15,6 +15,49 @@ public class Main extends HttpServlet
         out.println("abc");
     }
 
+    private int getCaseNum(String[][] board)
+    {
+        if (!isValid(board))
+        {
+            return 0;
+        }
+
+        int box = -1;
+        int cell = -1;
+        outer:
+        for (int i = 0; i < 9; ++i)
+        {
+            for (int j = 0; j < 9; ++j)
+            {
+                if (board[i][j].equals(""))
+                {
+                    box = i;
+                    cell = j;
+                    break outer;
+                }
+            }
+        }
+        if (box == -1)
+        {
+            return 1;
+        }
+
+        int acc = 0;
+        final int limit = 1000;
+        for (int i = 1; i <= 9; ++i)
+        {
+            if (acc >= limit)
+            {
+                break;
+            }
+            board[box][cell] = "" + i;
+            acc += getCaseNum(board);
+            board[box][cell] = "";
+        }
+
+        return Math.min(acc, limit);
+    }
+
     private boolean isValid(String[][] board)
     {
         for (int i = 0; i < 9; ++i)
