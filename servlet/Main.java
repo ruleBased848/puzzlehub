@@ -15,6 +15,18 @@ public class Main extends HttpServlet
         out.println("abc");
     }
 
+    private boolean isValid(String[][] board)
+    {
+        for (int i = 0; i < 9; ++i)
+        {
+            if (!isValidBox(board, i) || !isValidRow(board, i) || !isValidColumn(board, i))
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+
     private boolean isValidBox(String[][] board, int box)
     {
         var al = new ArrayList<String>();
