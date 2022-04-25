@@ -48,6 +48,25 @@ public class Main extends HttpServlet
         return areUnique(al);
     }
 
+    private boolean isValidColumn(String[][] board, int col)
+    {
+        int box = col / 3;
+        int cell = col % 3;
+        var al = new ArrayList<String>();
+        for (int i = 0; i < 9; i += 3)
+        {
+            for (int j = 0; j < 9; j += 3)
+            {
+                var str = board[box + i][cell + j];
+                if (!str.equals(""))
+                {
+                    al.add(str);
+                }
+            }
+        }
+        return areUnique(al);
+    }
+
     private boolean areUnique(ArrayList<String> al)
     {
         Collections.sort(al);
