@@ -1,8 +1,8 @@
-import { numbers, selectedCell } from './states';
+import { numbers, selectedCell } from '../states';
 import { Link } from 'react-router-dom';
-import Board from './components/Board';
-import NumberPad from './components/NumberPad';
-import Submit from './components/Submit';
+import Board from '../components/Board';
+import NumberPad from '../components/NumberPad';
+import Submit from '../components/Submit';
 
 function Game() {
   return (
