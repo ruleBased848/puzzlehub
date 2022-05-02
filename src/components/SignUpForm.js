@@ -1,10 +1,12 @@
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignUpForm.css';
 
 function SignUpForm() {
   const username = useRef(null);
   const password = useRef(null);
   const passwordConfirm = useRef(null);
+  const navigate = useNavigate();
 
   const clickHandler = () => {
     if (username.current.value === "")
@@ -31,7 +33,15 @@ function SignUpForm() {
           username: username.current.value,
           password: password.current.value,
         }),
-      });
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          alert(`Registration ${json.ok ? "succeeded" : "failed"}.`);
+          if (json.ok)
+          {
+            navigate("/signin");
+          }
+        });
     }
   };
 
