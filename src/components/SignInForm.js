@@ -1,9 +1,12 @@
+import { signIn } from '../states';
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './SignInForm.css';
 
 function SignInForm() {
   const username = useRef(null);
   const password = useRef(null);
+  const navigate = useNavigate();
 
   const clickHandler = () => {
     if (username.current.value === "")
@@ -22,7 +25,19 @@ function SignInForm() {
           username: username.current.value,
           password: password.current.value,
         }),
-      });
+      })
+        .then((response) => response.json())
+        .then((json) => {
+          if (json.ok)
+          {
+            signIn.set(true);
+            navigate("/");
+          }
+          else
+          {
+            alert(`Authentication failed.`);
+          }
+        });
     }
   };
 
