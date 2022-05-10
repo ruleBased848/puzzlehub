@@ -10,3 +10,5 @@ export const updateSelectedCell = action((index) => {
   selectedCell[0] = index[0];
   selectedCell[1] = index[1];
 });
+
+export const signIn = observable.box(false);
