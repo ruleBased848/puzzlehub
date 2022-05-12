@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.*;
 import java.util.*;
-import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 import org.json.simple.*;
@@ -11,34 +10,39 @@ import org.json.simple.parser.*;
 @WebServlet("/main")
 public class Main extends HttpServlet
 {
-    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
         var in = request.getReader();
         var json = in.readLine();
         in.close();
 
+        var board = new String[9][9];
+        JSONArray ja = null;
         try
         {
-            var board = new String[9][9];
-            var ja = (JSONArray)(new JSONParser().parse(json));
-            var itr = ja.iterator();
-            for (int i = 0; i < 9; ++i)
-            {
-                var ja_ = (JSONArray)itr.next();
-                var itr_ = ja_.iterator();
-                for (int j = 0; j < 9; ++j)
-                {
-                    board[i][j] = (String)itr_.next();
-                }
-            }
-
-            var out = response.getWriter();
-            out.println(getCaseNum(board));
+            ja = (JSONArray)(new JSONParser().parse(json));
         }
         catch (ParseException e)
         {
-            System.out.println(e);
+            var out = response.getWriter();
+            out.println("{\"ok\":false}");
+            out.close();
+            return;
         }
+        var itr = ja.iterator();
+        for (int i = 0; i < 9; ++i)
+        {
+            var ja_ = (JSONArray)itr.next();
+            var itr_ = ja_.iterator();
+            for (int j = 0; j < 9; ++j)
+            {
+                board[i][j] = (String)itr_.next();
+            }
+        }
+
+        var out = response.getWriter();
+        out.println("{\"ok\":true,\"number\":" + getCaseNum(board) + "}");
+        out.close();
     }
 
     private int getCaseNum(String[][] board)
