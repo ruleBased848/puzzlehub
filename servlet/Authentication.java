@@ -2,6 +2,7 @@ package servlet;
 
 import java.io.*;
 import java.sql.*;
+import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 import org.json.simple.*;
@@ -23,7 +24,7 @@ public class Authentication extends HttpServlet
             var username = (String)jo.get("username");
             var password = (String)jo.get("password");
 
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            loadDriver();
             var conn = DriverManager.getConnection(
                 "jdbc:mysql://" +
                 System.getProperty("DBSERVER") +
@@ -54,6 +55,18 @@ public class Authentication extends HttpServlet
         {
             out.println("{\"ok\":false}");
             System.out.println(e);
+        }
+    }
+
+    private void loadDriver() throws ServletException
+    {
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+        }
+        catch (ClassNotFoundException e)
+        {
+            throw new ServletException(e);
         }
     }
 }
