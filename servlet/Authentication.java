@@ -25,16 +25,7 @@ public class Authentication extends HttpServlet
             var password = (String)jo.get("password");
 
             loadDriver();
-            var conn = DriverManager.getConnection(
-                "jdbc:mysql://" +
-                System.getProperty("DBSERVER") +
-                "/" +
-                System.getProperty("DATABASE") +
-                "?user=" +
-                System.getProperty("USER") +
-                "&password=" +
-                System.getProperty("PASSWORD")
-            );
+            var conn = getConnection();
             var pStmt = conn.prepareStatement("SELECT password FROM users WHERE username = ?");
             pStmt.setString(1, username);
             var result = pStmt.executeQuery();
@@ -65,6 +56,27 @@ public class Authentication extends HttpServlet
             Class.forName("com.mysql.cj.jdbc.Driver");
         }
         catch (ClassNotFoundException e)
+        {
+            throw new ServletException(e);
+        }
+    }
+
+    private Connection getConnection() throws ServletException
+    {
+        try
+        {
+            return DriverManager.getConnection(
+                "jdbc:mysql://" +
+                System.getProperty("DBSERVER") +
+                "/" +
+                System.getProperty("DATABASE") +
+                "?user=" +
+                System.getProperty("USER") +
+                "&password=" +
+                System.getProperty("PASSWORD")
+            );
+        }
+        catch (SQLException e)
         {
             throw new ServletException(e);
         }
