@@ -26,7 +26,7 @@ public class Authentication extends HttpServlet
 
             loadDriver();
             var conn = getConnection();
-            var pStmt = conn.prepareStatement("SELECT password FROM users WHERE username = ?");
+            var pStmt = prepareStatement(conn, "SELECT password FROM users WHERE username = ?");
             pStmt.setString(1, username);
             var result = pStmt.executeQuery();
             var ok = false;
@@ -75,6 +75,18 @@ public class Authentication extends HttpServlet
                 "&password=" +
                 System.getProperty("PASSWORD")
             );
+        }
+        catch (SQLException e)
+        {
+            throw new ServletException(e);
+        }
+    }
+
+    private PreparedStatement prepareStatement(Connection conn, String sql) throws ServletException
+    {
+        try
+        {
+            return conn.prepareStatement(sql);
         }
         catch (SQLException e)
         {
