@@ -29,21 +29,73 @@ public class Authentication extends HttpServlet
         var in = request.getReader();
         var json = in.readLine();
         in.close();
+        if (json == null)
+        {
+            signalFailure(response);
+            return;
+        }
 
         JSONObject jo = null;
         try
         {
             jo = (JSONObject)(new JSONParser().parse(json));
         }
-        catch (ParseException e)
+        catch (ClassCastException | ParseException e)
         {
-            var out = response.getWriter();
-            out.println("{\"ok\":false}");
-            out.close();
+            signalFailure(response);
             return;
         }
-        var username = (String)jo.get("username");
-        var password = (String)jo.get("password");
+
+        var username_ = jo.get("username");
+        if (username_ == null)
+        {
+            signalFailure(response);
+            return;
+        }
+        String username = null;
+        try
+        {
+            username = (String)username_;
+        }
+        catch (ClassCastException e)
+        {
+            signalFailure(response);
+            return;
+        }
+
+        var password_ = jo.get("password");
+        if (password_ == null)
+        {
+            signalFailure(response);
+            return;
+        }
+        String password = null;
+        try
+        {
+            password = (String)password_;
+        }
+        catch (ClassCastException e)
+        {
+            signalFailure(response);
+            return;
+        }
+
+        var remember_ = jo.get("remember");
+        if (remember_ == null)
+        {
+            signalFailure(response);
+            return;
+        }
+        boolean remember = false;
+        try
+        {
+            remember = (boolean)remember_;
+        }
+        catch (ClassCastException e)
+        {
+            signalFailure(response);
+            return;
+        }
 
         Class.forName("com.mysql.cj.jdbc.Driver");
         var conn = DriverManager.getConnection(
@@ -62,17 +114,31 @@ public class Authentication extends HttpServlet
         var ok = false;
         if (result.next())
         {
-            var password_ = result.getString("password");
-            if (password_.equals(password))
+            var password__ = result.getString("password");
+            if (password__.equals(password))
             {
                 ok = true;
-                response.addCookie(new Cookie("username", username));
-                response.addCookie(new Cookie("password", password));
+                var usernameCookie = new Cookie("username", username);
+                var passwordCookie = new Cookie("password", password);
+                if (remember)
+                {
+                    usernameCookie.setMaxAge(2 * 365 * 24 * 60 * 60);
+                    passwordCookie.setMaxAge(2 * 365 * 24 * 60 * 60);
+                }
+                response.addCookie(usernameCookie);
+                response.addCookie(passwordCookie);
             }
         }
 
         var out = response.getWriter();
         out.println("{\"ok\":" + ok + "}");
+        out.close();
+    }
+
+    private void signalFailure(HttpServletResponse response) throws IOException
+    {
+        var out = response.getWriter();
+        out.println("{\"ok\":false}");
         out.close();
     }
 }
