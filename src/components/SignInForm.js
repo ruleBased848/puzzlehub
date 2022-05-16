@@ -6,6 +6,7 @@ import './SignInForm.css';
 function SignInForm() {
   const username = useRef(null);
   const password = useRef(null);
+  const remember = useRef(null);
   const navigate = useNavigate();
 
   const clickHandler = () => {
@@ -24,6 +25,7 @@ function SignInForm() {
         body: JSON.stringify({
           username: username.current.value,
           password: password.current.value,
+          remember: remember.current.checked,
         }),
       })
         .then((response) => response.json())
@@ -42,20 +44,23 @@ function SignInForm() {
   };
 
   return (
-    <form>
-      <ul>
-        <li>
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" ref={username} />
-        </li>
-        <li>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" ref={password} />
-        </li>
-        <li className="button">
-          <button type="button" onClick={clickHandler}>Sign In</button>
-        </li>
-      </ul>
+    <form className="signin">
+      <div className="title">Sign in</div>
+      <div>
+        <label htmlFor="username">User name</label>
+        <input type="text" id="username" ref={username} />
+      </div>
+      <div>
+        <label htmlFor="password">Password</label>
+        <input type="password" id="password" ref={password} />
+      </div>
+      <div className="check">
+        <input type="checkbox" id="remember" ref={remember}/>
+        <label htmlFor="remember">Remember me</label>
+      </div>
+      <div>
+        <button type="button" onClick={clickHandler}>Sign In</button>
+      </div>
     </form>
   );
 }
