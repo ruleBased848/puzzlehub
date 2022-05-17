@@ -46,24 +46,23 @@ function SignUpForm() {
   };
 
   return (
-    <form>
-      <ul>
-        <li>
-          <label htmlFor="username">Username (Required)</label>
-          <input type="text" id="username" ref={username} />
-        </li>
-        <li>
-          <label htmlFor="password">Password (Required)</label>
-          <input type="password" id="password" ref={password} />
-        </li>
-        <li>
-          <label htmlFor="password-confirm">Password Confirm (Required)</label>
-          <input type="password" id="password-confirm" ref={passwordConfirm} />
-        </li>
-        <li className="button">
-          <button type="button" onClick={clickHandler}>Sign Up</button>
-        </li>
-      </ul>
+    <form className="signup">
+      <div className="title">Sign up</div>
+      <div>
+        <label htmlFor="username">User name (Required)</label>
+        <input type="text" id="username" ref={username} />
+      </div>
+      <div>
+        <label htmlFor="password">Password (Required)</label>
+        <input type="password" id="password" ref={password} />
+      </div>
+      <div>
+        <label htmlFor="password-confirm">Password Confirm (Required)</label>
+        <input type="password" id="password-confirm" ref={passwordConfirm} />
+      </div>
+      <div>
+        <button type="button" onClick={clickHandler}>Sign Up</button>
+      </div>
     </form>
   );
 }
