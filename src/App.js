@@ -8,6 +8,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Game />} />
+        <Route path="index.html" element={<Game />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
       </Routes>
