@@ -1,4 +1,4 @@
-package servlet;
+package servlet.members;
 
 import java.io.*;
 import java.sql.*;
@@ -6,7 +6,7 @@ import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 
-@WebServlet("/cookieauthentication")
+@WebServlet("/members/cookieauthentication")
 public class CookieAuthentication extends HttpServlet
 {
     public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException

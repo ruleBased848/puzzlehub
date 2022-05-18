@@ -5,6 +5,6 @@ import App from './App';
 import './index.css';
 
 createRoot(document.getElementById('root')).render(<App />);
-fetch("/cookieauthentication")
+fetch("/members/cookieauthentication")
   .then((response) => response.json())
   .then((json) => signIn.set(json.ok));

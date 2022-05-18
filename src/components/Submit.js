@@ -3,7 +3,7 @@ import './Submit.css';
 
 function Submit() {
   const clickHandler = () => {
-    fetch("/main", {
+    fetch("/members/main", {
       method: "POST",
       body: JSON.stringify(numbers),
     })

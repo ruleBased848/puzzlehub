@@ -1,4 +1,4 @@
-package servlet;
+package servlet.members;
 
 import java.io.*;
 import java.util.*;
@@ -7,7 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import org.json.simple.*;
 import org.json.simple.parser.*;
 
-@WebServlet("/main")
+@WebServlet("/members/main")
 public class Main extends HttpServlet
 {
     public void service(HttpServletRequest request, HttpServletResponse response) throws IOException
