@@ -15,14 +15,14 @@ public class Members implements Filter
         {
             doFilter_(request, response, chain);
         }
-        catch (ClassNotFoundException | SQLException e)
+        catch (SQLException e)
         {
             throw new ServletException(e);
         }
     }
 
     private void doFilter_(ServletRequest request, ServletResponse response, FilterChain chain)
-        throws IOException, ServletException, ClassNotFoundException, SQLException
+        throws IOException, ServletException, SQLException
     {
         var cookies = ((HttpServletRequest)request).getCookies();
         if (cookies == null)
@@ -61,7 +61,6 @@ public class Members implements Filter
             return;
         }
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
         var conn = DriverManager.getConnection(
             "jdbc:mysql://" +
             System.getProperty("DBSERVER") +

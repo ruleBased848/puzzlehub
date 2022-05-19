@@ -17,14 +17,14 @@ public class Registration extends HttpServlet
         {
             service_(request, response);
         }
-        catch (ClassNotFoundException | SQLException e)
+        catch (SQLException e)
         {
             throw new ServletException(e);
         }
     }
 
     private void service_(HttpServletRequest request, HttpServletResponse response)
-        throws IOException, ClassNotFoundException, SQLException
+        throws IOException, SQLException
     {
         var in = request.getReader();
         var json = in.readLine();
@@ -43,7 +43,6 @@ public class Registration extends HttpServlet
             return;
         }
 
-        Class.forName("com.mysql.cj.jdbc.Driver");
         var conn = DriverManager.getConnection(
             "jdbc:mysql://" +
             System.getProperty("DBSERVER") +
