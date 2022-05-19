@@ -7,6 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 import org.json.simple.*;
 import org.json.simple.parser.*;
+import lib.*;
 
 @WebServlet("/registration")
 public class Registration extends HttpServlet
@@ -43,16 +44,7 @@ public class Registration extends HttpServlet
             return;
         }
 
-        var conn = DriverManager.getConnection(
-            "jdbc:mysql://" +
-            System.getProperty("DBSERVER") +
-            "/" +
-            System.getProperty("DATABASE") +
-            "?user=" +
-            System.getProperty("USER") +
-            "&password=" +
-            System.getProperty("PASSWORD")
-        );
+        var conn = new DBConnection();
         var pStmt = conn.prepareStatement("INSERT INTO users VALUES (?,?)");
         pStmt.setString(1, (String)jo.get("username"));
         pStmt.setString(2, (String)jo.get("password"));

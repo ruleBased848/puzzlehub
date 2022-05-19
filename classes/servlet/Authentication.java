@@ -7,6 +7,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 import org.json.simple.*;
 import org.json.simple.parser.*;
+import lib.*;
 
 @WebServlet("/authentication")
 public class Authentication extends HttpServlet
@@ -97,16 +98,7 @@ public class Authentication extends HttpServlet
             return;
         }
 
-        var conn = DriverManager.getConnection(
-            "jdbc:mysql://" +
-            System.getProperty("DBSERVER") +
-            "/" +
-            System.getProperty("DATABASE") +
-            "?user=" +
-            System.getProperty("USER") +
-            "&password=" +
-            System.getProperty("PASSWORD")
-        );
+        var conn = new DBConnection();
         var pStmt = conn.prepareStatement("SELECT password FROM users WHERE username = ?");
         pStmt.setString(1, username);
         var result = pStmt.executeQuery();

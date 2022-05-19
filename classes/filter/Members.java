@@ -5,6 +5,7 @@ import java.sql.*;
 import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import lib.*;
 
 @WebFilter("/members/*")
 public class Members implements Filter
@@ -61,16 +62,7 @@ public class Members implements Filter
             return;
         }
 
-        var conn = DriverManager.getConnection(
-            "jdbc:mysql://" +
-            System.getProperty("DBSERVER") +
-            "/" +
-            System.getProperty("DATABASE") +
-            "?user=" +
-            System.getProperty("USER") +
-            "&password=" +
-            System.getProperty("PASSWORD")
-        );
+        var conn = new DBConnection();
         var pStmt = conn.prepareStatement("SELECT password FROM users WHERE username = ?");
         pStmt.setString(1, username);
         var result = pStmt.executeQuery();
