@@ -12,6 +12,12 @@ public class Main extends HttpServlet
 {
     public void service(HttpServletRequest request, HttpServletResponse response) throws IOException
     {
+        if (!(boolean)request.getAttribute("authenticated"))
+        {
+            signalFailure(response);
+            return;
+        }
+
         var in = request.getReader();
         var json = in.readLine();
         in.close();
@@ -24,9 +30,7 @@ public class Main extends HttpServlet
         }
         catch (ParseException e)
         {
-            var out = response.getWriter();
-            out.println("{\"ok\":false}");
-            out.close();
+            signalFailure(response);
             return;
         }
         var itr = ja.iterator();
@@ -42,6 +46,13 @@ public class Main extends HttpServlet
 
         var out = response.getWriter();
         out.println("{\"ok\":true,\"number\":" + getCaseNum(board) + "}");
+        out.close();
+    }
+
+    private void signalFailure(HttpServletResponse response) throws IOException
+    {
+        var out = response.getWriter();
+        out.println("{\"ok\":false}");
         out.close();
     }
 
