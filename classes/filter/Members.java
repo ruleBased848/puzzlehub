@@ -25,41 +25,13 @@ public class Members implements Filter
     private void doFilter_(ServletRequest request, ServletResponse response, FilterChain chain)
         throws IOException, ServletException, SQLException
     {
-        var cookies = ((HttpServletRequest)request).getCookies();
-        if (cookies == null)
+        var cookie = new SimpleCookie();
+        cookie.setCookies(((HttpServletRequest)request).getCookies());
+        var username = cookie.getValue("username");
+        var password = cookie.getValue("password");
+        if (username == null || password == null)
         {
             signalFailure(request, response, chain);
-            return;
-        }
-
-        String username = null;
-        for (var cookie : cookies)
-        {
-            if (cookie.getName().equals("username"))
-            {
-                username = cookie.getValue();
-                break;
-            }
-        }
-        if (username == null)
-        {
-            signalFailure(request, response, chain);
-            return;
-        }
-
-        String password = null;
-        for (var cookie : cookies)
-        {
-            if (cookie.getName().equals("password"))
-            {
-                password = cookie.getValue();
-                break;
-            }
-        }
-        if (password == null)
-        {
-            signalFailure(request, response, chain);
-            return;
         }
 
         var conn = new DBConnection();
