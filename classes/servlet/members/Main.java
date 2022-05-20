@@ -1,20 +1,37 @@
 package servlet.members;
 
 import java.io.*;
+import java.sql.*;
 import java.util.*;
+import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 import org.json.simple.*;
 import org.json.simple.parser.*;
+import lib.*;
 
 @WebServlet("/members/main")
 public class Main extends HttpServlet
 {
-    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException
+    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
+    {
+        try
+        {
+            service_(request, response);
+        }
+        catch (SQLException e)
+        {
+            throw new ServletException(e);
+        }
+    }
+
+    public void service_(HttpServletRequest request, HttpServletResponse response) throws IOException, SQLException
     {
         if (!(boolean)request.getAttribute("authenticated"))
         {
-            signalFailure(response);
+            var out = response.getWriter();
+            out.println("{\"ok\":false,\"reason\":\"not authenticated\"}");
+            out.close();
             return;
         }
 
@@ -30,7 +47,9 @@ public class Main extends HttpServlet
         }
         catch (ParseException e)
         {
-            signalFailure(response);
+            var out = response.getWriter();
+            out.println("{\"ok\":false,\"reason\":\"not a puzzle\"}");
+            out.close();
             return;
         }
         var itr = ja.iterator();
@@ -44,15 +63,18 @@ public class Main extends HttpServlet
             }
         }
 
-        var out = response.getWriter();
-        out.println("{\"ok\":true,\"number\":" + getCaseNum(board) + "}");
-        out.close();
-    }
+        int num = getCaseNum(board);
+        if (num == 1)
+        {
+            var conn = new DBConnection();
+            var pStmt = conn.prepareStatement("INSERT INTO puzzles (username,content) VALUES (?,?)");
+            pStmt.setString(1, (String)request.getAttribute("username"));
+            pStmt.setString(2, json);
+            pStmt.executeUpdate();
+        }
 
-    private void signalFailure(HttpServletResponse response) throws IOException
-    {
         var out = response.getWriter();
-        out.println("{\"ok\":false}");
+        out.println("{\"ok\":" + (num == 1 ? "true}" : "false,\"reason\":\"invalid puzzle\",\"number\":" + num + "}"));
         out.close();
     }
 
