@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import { updateSelectedCell } from '../states';
-import './Board.css';
+import styles from './Board.module.css';
 
 const Board = observer(
   ({ numbers, selectedCell }) => {
@@ -12,17 +12,17 @@ const Board = observer(
     const clickHandler = (i) => () => updateSelectedCell([box(i), cell(i)]);
 
     return (
-      <svg className="sudoku" viewBox="0 0 800 800" preserveAspectRatio="none">
+      <svg className={styles.sudoku} viewBox="0 0 800 800" preserveAspectRatio="none">
         <rect width="800" height="800" fill="black" />
         {
           Array(81).fill().map(
-            (e, i) => <rect key={i} className="cell" x={x(i)} y={y(i)} width="86" height="86" fill={fill(i)} onClick={clickHandler(i)} />
+            (e, i) => <rect key={i} className={styles.cell} x={x(i)} y={y(i)} width="86" height="86" fill={fill(i)} onClick={clickHandler(i)} />
           )
         }
         {
           Array(81).fill().map(
             (e, i) => (
-              <text key={i} x={x(i) + 43} y={y(i) + 60} textAnchor="middle" fontSize="50" fill="black" onClick={clickHandler(i)}>
+              <text key={i} className={styles.text} x={x(i) + 43} y={y(i) + 60} textAnchor="middle" fontSize="50" fill="black" onClick={clickHandler(i)}>
                 {numbers[box(i)][cell(i)]}
               </text>
             )

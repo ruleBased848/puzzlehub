@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './SignUp.css';
+import styles from './SignUp.module.css';
 
 function SignUp() {
   const username = useRef(null);
@@ -47,22 +47,22 @@ function SignUp() {
 
   return (
     <div>
-      <form className="signup">
-        <div className="title">Sign up</div>
+      <form className={styles.signup}>
+        <div className={styles.title}>Sign up</div>
         <div>
-          <label htmlFor="username">User name (Required)</label>
-          <input type="text" id="username" ref={username} />
+          <label className={styles.label} htmlFor="username">User name (Required)</label>
+          <input type="text" id="username" className={styles.input} ref={username} />
         </div>
         <div>
-          <label htmlFor="password">Password (Required)</label>
-          <input type="password" id="password" ref={password} />
+          <label className={styles.label} htmlFor="password">Password (Required)</label>
+          <input type="password" id="password" className={styles.input} ref={password} />
         </div>
         <div>
-          <label htmlFor="password-confirm">Password Confirm (Required)</label>
-          <input type="password" id="password-confirm" ref={passwordConfirm} />
+          <label className={styles.label} htmlFor="password-confirm">Password Confirm (Required)</label>
+          <input type="password" id="password-confirm" className={styles.input} ref={passwordConfirm} />
         </div>
         <div>
-          <button type="button" onClick={clickHandler}>Sign Up</button>
+          <button className={styles.button} type="button" onClick={clickHandler}>Sign Up</button>
         </div>
       </form>
     </div>

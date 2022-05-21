@@ -1,7 +1,7 @@
 import { signIn } from '../states';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './SignIn.css';
+import styles from './SignIn.module.css';
 
 function SignIn() {
   const username = useRef(null);
@@ -45,22 +45,22 @@ function SignIn() {
 
   return (
     <div>
-      <form className="signin">
-        <div className="title">Sign in</div>
+      <form className={styles.signin}>
+        <div className={styles.title}>Sign in</div>
         <div>
-          <label htmlFor="username">User name</label>
-          <input type="text" id="username" ref={username} />
+          <label className={styles.mainlabel} htmlFor="username">User name</label>
+          <input type="text" id="username" className={styles.maininput} ref={username} />
         </div>
         <div>
-          <label htmlFor="password">Password</label>
-          <input type="password" id="password" ref={password} />
+          <label className={styles.mainlabel} htmlFor="password">Password</label>
+          <input type="password" id="password" className={styles.maininput} ref={password} />
         </div>
-        <div className="check">
-          <input type="checkbox" id="remember" ref={remember}/>
-          <label htmlFor="remember">Remember me</label>
+        <div className={styles.check}>
+          <input type="checkbox" id="remember" className={styles.checkboxinput} ref={remember}/>
+          <label className={styles.checkboxlabel} htmlFor="remember">Remember me</label>
         </div>
         <div>
-          <button type="button" onClick={clickHandler}>Sign In</button>
+          <button className={styles.button} type="button" onClick={clickHandler}>Sign In</button>
         </div>
       </form>
     </div>

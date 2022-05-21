@@ -1,5 +1,5 @@
 import { numbers } from '../states';
-import './Submit.css';
+import styles from './Submit.module.css';
 
 function Submit() {
   const clickHandler = () => {
@@ -11,7 +11,7 @@ function Submit() {
       .then((text) => alert(text));
   };
 
-  return <div className="submit-background" onClick={clickHandler}>Submit</div>;
+  return <div className={styles.background} onClick={clickHandler}>Submit</div>;
 }
 
 export default Submit;

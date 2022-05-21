@@ -1,12 +1,12 @@
-.sudoku {
+.numberpad {
   width: 100%;
   height: 100%;
 }
 
-.sudoku .cell {
+.button {
   cursor: pointer;
 }
 
-.sudoku text {
+.text {
   cursor: pointer;
 }
