@@ -11,4 +11,15 @@ export const updateSelectedCell = action((index) => {
   selectedCell[1] = index[1];
 });
 
+export function resetSudoku() {
+  for (let i = 0; i < 9; ++i)
+  {
+    for (let j = 0; j < 9; ++j)
+    {
+      updateNumbers([i, j], "");
+    }
+  }
+  updateSelectedCell([0, 0]);
+}
+
 export const signIn = observable.box(false);
