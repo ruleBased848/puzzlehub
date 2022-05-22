@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Game from './pages/Game';
 import SignUp from './pages/SignUp';
 import SignIn from './pages/SignIn';
+import Upload from './pages/Upload';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="index.html" element={<Game />} />
         <Route path="signup" element={<SignUp />} />
         <Route path="signin" element={<SignIn />} />
+        <Route path="upload" element={<Upload />} />
       </Routes>
     </BrowserRouter>
   );

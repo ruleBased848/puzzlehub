@@ -1,0 +1,120 @@
+.background {
+  height: 100%;
+  background-color: pink;
+  overflow: scroll;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+}
+
+.container > button {
+  width: 50%;
+  height: 50px;
+  border: 0;
+  font-size: 16px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: white;
+  cursor: pointer;
+}
+
+.container > button:hover {
+  opacity: 0.8;
+}
+
+.submitbutton {
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  background-color: #FF69B4;
+}
+
+.cancelbutton {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+  background-color: grey;
+}
+
+.signin {
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid #E5E5E5;
+  padding: 50px;
+}
+
+.title {
+  text-align: center;
+  font-size: 20px;
+  font-family: Papyrus, fantasy;
+}
+
+.mainlabel {
+  font-size: 16px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: #7C7C7C;
+}
+
+.maininput {
+  width: 100%;
+  border-style: none none solid;
+  border-color: #E5E5E5;
+  outline: none;
+  font-size: 16px;
+}
+
+.maininput:focus {
+  border-color: #FF69B4;
+}
+
+.signin > div + div {
+  margin-top: 16px;
+}
+
+.check {
+  text-align: center;
+}
+
+.checkboxlabel {
+  font-size: 16px;
+  font-family: Papyrus, fantasy;
+}
+
+.signinbutton {
+  width: 100%;
+  height: 50px;
+  border: 0;
+  border-radius: 4px;
+  background-color: #FF69B4;
+  font-size: 16px;
+  font-family: Verdana, Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+.signinbutton:hover {
+  opacity: 0.8;
+}
+
+.signin label,
+.checkboxinput,
+.signinbutton {
+  cursor: pointer;
+}
+
+@media screen and (min-width: 420px) {
+  .container {
+    width: 400px;
+  }
+
+  .signin {
+    width: 400px;
+  }
+}
+
+@media screen and (min-height: 600px) {
+  .background {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    overflow: clip;
+  }
+}
