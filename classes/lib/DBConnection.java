@@ -18,6 +18,11 @@ public class DBConnection
         );
     }
 
+    public Statement createStatement() throws SQLException
+    {
+        return conn.createStatement();
+    }
+
     public PreparedStatement prepareStatement(String sql) throws SQLException
     {
         return conn.prepareStatement(sql);
