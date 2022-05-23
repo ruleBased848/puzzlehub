@@ -23,3 +23,5 @@ export function resetSudoku() {
 }
 
 export const signIn = observable.box(false);
+
+export const page = observable.box(1);
