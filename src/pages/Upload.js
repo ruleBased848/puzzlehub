@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import { numbers, selectedCell, updateSelectedCell, resetSudoku, signIn } from '../states';
+import { sudokuState, updateSelectedCell, resetSudoku, signIn } from '../states';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Board from '../components/Board';
@@ -18,7 +18,7 @@ const Upload = observer(
     const submitHandler = () => {
       fetch("/members/main", {
         method: "POST",
-        body: JSON.stringify(numbers),
+        body: JSON.stringify(sudokuState.numbers),
       })
         .then((response) => response.json())
         .then((json) => {
@@ -80,7 +80,7 @@ const Upload = observer(
       <div className={styles.background}>
         <div className={styles.container}>
           <div>
-            <Board numbers={numbers} selectedCell={selectedCell} onClick={sudokuClickHandler} />
+            <Board numbers={sudokuState.numbers} selectedCell={sudokuState.selectedCell} onClick={sudokuClickHandler} />
           </div>
           <div>
             <NumberPad />

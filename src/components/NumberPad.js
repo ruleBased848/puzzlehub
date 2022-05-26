@@ -1,9 +1,9 @@
-import { updateNumbers, selectedCell } from '../states';
+import { sudokuState, updateNumbers } from '../states';
 import styles from './NumberPad.module.css';
 
 function NumberPad() {
-  const clickHandler = (i) => () => updateNumbers(selectedCell, "" + (i + 1));
-  const deleteHandler = () => updateNumbers(selectedCell, "");
+  const clickHandler = (i) => () => updateNumbers(sudokuState.selectedCell, "" + (i + 1));
+  const deleteHandler = () => updateNumbers(sudokuState.selectedCell, "");
 
   return (
     <svg className={styles.numberpad} viewBox="0 0 1055 110" preserveAspectRatio="none">

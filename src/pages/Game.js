@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import { numbers, selectedCell, signIn } from '../states';
+import { sudokuState, signIn } from '../states';
 import { Link } from 'react-router-dom';
 import Board from '../components/Board';
 import NumberPad from '../components/NumberPad';
@@ -19,7 +19,7 @@ const Game = observer(
         {signIn.get() ? <div /> : linksSignInFalse}
         <div className="game">
           <div className="game-board">
-            <Board numbers={numbers} selectedCell={selectedCell} />
+            <Board numbers={sudokuState.numbers} selectedCell={sudokuState.selectedCell} />
           </div>
           <div className="numberpad">
             <NumberPad />
