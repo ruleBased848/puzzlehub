@@ -1,5 +1,5 @@
 import { observer } from "mobx-react";
-import { sudokuState, updateSelectedCell, resetSudoku, signIn } from '../states';
+import { sudokuState, updateNumbers, updateSelectedCell, resetSudoku, signIn } from '../states';
 import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Board from '../components/Board';
@@ -14,6 +14,10 @@ const Upload = observer(
     const navigate = useNavigate();
 
     const sudokuClickHandler = (i) => () => updateSelectedCell([Math.floor(i / 9), i % 9]);
+
+    const clickHandler = (i) => () => updateNumbers(sudokuState.selectedCell, "" + (i + 1));
+
+    const deleteHandler = () => updateNumbers(sudokuState.selectedCell, "");
 
     const submitHandler = () => {
       fetch("/members/main", {
@@ -83,7 +87,7 @@ const Upload = observer(
             <Board numbers={sudokuState.numbers} selectedCell={sudokuState.selectedCell} onClick={sudokuClickHandler} />
           </div>
           <div>
-            <NumberPad />
+            <NumberPad clickHandler={clickHandler} deleteHandler={deleteHandler} />
           </div>
           <button className={styles.submitbutton} type="button" onClick={submitHandler}>Submit</button>
           <button className={styles.cancelbutton} type="button" onClick={cancelHandler}>Cancel</button>

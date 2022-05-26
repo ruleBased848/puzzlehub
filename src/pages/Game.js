@@ -2,7 +2,6 @@ import { observer } from "mobx-react";
 import { sudokuState, signIn } from '../states';
 import { Link } from 'react-router-dom';
 import Board from '../components/Board';
-import NumberPad from '../components/NumberPad';
 import Submit from '../components/Submit';
 
 const Game = observer(
@@ -20,9 +19,6 @@ const Game = observer(
         <div className="game">
           <div className="game-board">
             <Board numbers={sudokuState.numbers} selectedCell={sudokuState.selectedCell} />
-          </div>
-          <div className="numberpad">
-            <NumberPad />
           </div>
           <div className="submit">
             <Submit />
