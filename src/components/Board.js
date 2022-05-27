@@ -1,7 +1,6 @@
-import { observer } from "mobx-react";
 import styles from './Board.module.css';
 
-const Board = observer(({ numbers: [numbers], selectedCell, onClick = () => () => {} }) => {
+function Board({ numbers: [numbers], selectedCell, onClick = () => () => {} }) {
   const box = (i) => Math.floor(i / 9);
   const cell = (i) => i % 9;
   const x = (i) => 5 + 265 * (box(i) % 3) + 87 * (cell(i) % 3);
@@ -27,6 +26,6 @@ const Board = observer(({ numbers: [numbers], selectedCell, onClick = () => () =
       }
     </svg>
   );
-});
+}
 
 export default Board;
