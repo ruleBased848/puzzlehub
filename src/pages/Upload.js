@@ -22,7 +22,7 @@ const Upload = observer(
     const submitHandler = () => {
       fetch("/members/main", {
         method: "POST",
-        body: JSON.stringify(sudokuState.numbers),
+        body: JSON.stringify(sudokuState.numbers[0]),
       })
         .then((response) => response.json())
         .then((json) => {
