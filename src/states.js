@@ -7,6 +7,7 @@ export const sudokuState = observable({
 
 export const updateNumbers = action((index, num) => {
   sudokuState.numbers[index[0]][index[1]] = num;
+  sudokuState.numbers = sudokuState.numbers.slice();
 });
 
 export const updateSelectedCell = action((index) => {
