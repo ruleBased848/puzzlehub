@@ -1,5 +1,21 @@
 import { action, observable } from 'mobx';
 
+export const pageControlState = observable({
+  searchOpen: false,
+  hamburgerOpen: false,
+  page: 1,
+});
+
+export const changeSearchState = action(() => {
+  pageControlState.searchOpen = !pageControlState.searchOpen;
+});
+
+export const changeHamburgerState = action(() => {
+  pageControlState.hamburgerOpen = !pageControlState.hamburgerOpen;
+});
+
+export const updatePage = action((n) => pageControlState.page = n);
+
 export const sudokuState = observable({
   numbers: [Array(9).fill().map((e) => Array(9).fill(""))],
   selectedCell: [0, 0],
@@ -20,5 +36,3 @@ export const resetSudoku = action(() => {
 });
 
 export const signIn = observable.box(false);
-
-export const page = observable.box(1);
