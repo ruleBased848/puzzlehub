@@ -8,10 +8,17 @@ export const pageControlState = observable({
 
 export const changeSearchState = action(() => {
   pageControlState.searchOpen = !pageControlState.searchOpen;
+  pageControlState.hamburgerOpen = false;
 });
 
 export const changeHamburgerState = action(() => {
   pageControlState.hamburgerOpen = !pageControlState.hamburgerOpen;
+  pageControlState.searchOpen = false;
+});
+
+export const closeAll = action(() => {
+  pageControlState.searchOpen = false;
+  pageControlState.hamburgerOpen = false;
 });
 
 export const updatePage = action((n) => pageControlState.page = n);
