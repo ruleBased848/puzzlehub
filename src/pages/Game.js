@@ -2,6 +2,8 @@ import { observer } from "mobx-react";
 import { signIn, pageControlState, changeSearchState, changeHamburgerState, closeAll } from '../states';
 import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import Async from "react-async";
+import Board from '../components/Board';
 import styles from './Game.module.css';
 
 const Header = observer(() => {
@@ -58,12 +60,49 @@ const Header = observer(() => {
   );
 });
 
+const itemNum = 10;
+
+const Main = observer(() => {
+  const fetchPuzzles = async ({ itemNum, page }) => {
+    const res = await fetch("/search", {
+      method: "POST",
+      body: JSON.stringify({ itemNum, page }),
+    });
+    return res.json();
+  };
+
+  return (
+    <main className={styles.main}>
+      <Async promiseFn={fetchPuzzles} itemNum={itemNum} page={pageControlState.page}>
+        <Async.Pending>Loading...</Async.Pending>
+        <Async.Fulfilled>
+          {(data) => (
+            <div className={styles.puzzledisplay}>
+              <div className={styles.puzzlelist}>
+                {data.puzzles.map((e, i) => (
+                  <div key={i} className={styles.puzzleinfo}>
+                    <div className={styles.boardcontainer}>
+                      <Board numbers={[e.content]} selectedCell={[0, -1]} />
+                      <div className={styles.meta}>
+                        {e.username}<br />{e.createdAt}
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </Async.Fulfilled>
+      </Async>
+    </main>
+  );
+});
+
 function Game() {
   return (
     <div className={styles.background} onClick={closeAll}>
       <Header />
-      <main className={styles.main}>
-      </main>
+      <Main />
     </div>
   );
 }
