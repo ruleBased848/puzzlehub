@@ -161,3 +161,57 @@
 .meta:hover {
   opacity: 0.8;
 }
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  height: 51px;
+  border-top: 1px solid #E5E5E5;
+}
+
+.prev {
+  width: 51px;
+  border-right: 1px solid #E5E5E5;
+  text-align: center;
+  line-height: 50px;
+}
+
+.next {
+  width: 51px;
+  border-left: 1px solid #E5E5E5;
+  text-align: center;
+  line-height: 50px;
+}
+
+.activated {
+  color: #FF69B4;
+  cursor: pointer;
+}
+
+.deactivated {
+  color: grey;
+  cursor: not-allowed;
+}
+
+.pagenumbercontainer {
+  min-width: 0;
+  flex: 1 1;
+  overflow: scroll;
+}
+
+.pagenumber {
+  height: 50px;
+  padding: 0 5%;
+  text-align: center;
+  line-height: 50px;
+}
+
+.selected {
+  color: #FF69B4;
+  cursor: not-allowed;
+}
+
+.unselected {
+  color: grey;
+  cursor: pointer;
+}
