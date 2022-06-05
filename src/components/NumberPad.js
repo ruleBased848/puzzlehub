@@ -1,4 +1,4 @@
-import styles from './NumberPad.module.css';
+import styles from "./NumberPad.module.css";
 
 function NumberPad({ clickHandler, deleteHandler }) {
   return (

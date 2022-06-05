@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Game from './pages/Game';
-import SignUp from './pages/SignUp';
-import SignIn from './pages/SignIn';
-import Upload from './pages/Upload';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Game from "./pages/Game";
+import SignUp from "./pages/SignUp";
+import SignIn from "./pages/SignIn";
+import Upload from "./pages/Upload";
 
 function App() {
   return (

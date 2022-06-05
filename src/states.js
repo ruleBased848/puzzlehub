@@ -1,4 +1,4 @@
-import { action, observable } from 'mobx';
+import { action, observable } from "mobx";
 
 export const pageControlState = observable({
   searchOpen: false,

@@ -1,10 +1,10 @@
 import { observer } from "mobx-react";
-import { signIn, pageControlState, changeSearchState, changeHamburgerState, closeAll, updatePage } from '../states';
-import { useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { signIn, pageControlState, changeSearchState, changeHamburgerState, closeAll, updatePage } from "../states";
+import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import Async from "react-async";
-import Board from '../components/Board';
-import styles from './Game.module.css';
+import Board from "../components/Board";
+import styles from "./Game.module.css";
 
 const Header = observer(() => {
   const search = useRef(null);

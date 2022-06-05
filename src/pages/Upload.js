@@ -1,10 +1,10 @@
 import { observer } from "mobx-react";
-import { sudokuState, updateNumbers, updateSelectedCell, resetSudoku, signIn } from '../states';
-import { useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Board from '../components/Board';
-import NumberPad from '../components/NumberPad';
-import styles from './Upload.module.css';
+import { sudokuState, updateNumbers, updateSelectedCell, resetSudoku, signIn } from "../states";
+import { useRef } from "react";
+import { useNavigate } from "react-router-dom";
+import Board from "../components/Board";
+import NumberPad from "../components/NumberPad";
+import styles from "./Upload.module.css";
 
 const Upload = observer(
   () => {

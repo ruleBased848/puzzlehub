@@ -1,4 +1,4 @@
-import styles from './Submit.module.css';
+import styles from "./Submit.module.css";
 
 function Submit() {
   return <div className={styles.background}>Submit</div>;

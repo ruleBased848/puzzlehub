@@ -1,4 +1,4 @@
-import styles from './Board.module.css';
+import styles from "./Board.module.css";
 
 function Board({ numbers: [numbers], selectedCell, onClick = () => () => {} }) {
   const box = (i) => Math.floor(i / 9);
