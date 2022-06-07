@@ -26,17 +26,12 @@ const Upload = observer(
       })
         .then((response) => response.json())
         .then((json) => {
-          if (json.ok)
-          {
+          if (json.ok) {
             resetSudoku();
             navigate("/");
-          }
-          else if (json.reason === "invalid puzzle")
-          {
+          } else if (json.reason === "invalid puzzle") {
             alert(`Only puzzles with one answer can be submitted.\nThere are ${json.number === 1000 ? "999+" : json.number} answers to this puzzle.`);
-          }
-          else if (json.reason === "not authenticated")
-          {
+          } else if (json.reason === "not authenticated") {
             signIn.set(false);
           }
         });
@@ -48,16 +43,11 @@ const Upload = observer(
     };
 
     const signinHandler = () => {
-      if (username.current.value === "")
-      {
+      if (username.current.value === "") {
         alert("The username is required.");
-      }
-      else if (password.current.value === "")
-      {
+      } else if (password.current.value === "") {
         alert("The password is required.");
-      }
-      else
-      {
+      } else {
         fetch("/authentication", {
           method: "POST",
           body: JSON.stringify({
@@ -68,12 +58,9 @@ const Upload = observer(
         })
           .then((response) => response.json())
           .then((json) => {
-            if (json.ok)
-            {
+            if (json.ok) {
               signIn.set(true);
-            }
-            else
-            {
+            } else {
               alert(`Authentication failed.`);
             }
           });
