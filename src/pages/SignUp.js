@@ -9,24 +9,15 @@ function SignUp() {
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    if (username.current.value === "")
-    {
+    if (username.current.value === "") {
       alert("The username is required.");
-    }
-    else if (password.current.value === "")
-    {
+    } else if (password.current.value === "") {
       alert("The password is required.");
-    }
-    else if (passwordConfirm.current.value === "")
-    {
+    } else if (passwordConfirm.current.value === "") {
       alert("Please fill the password confirm field.");
-    }
-    else if (password.current.value !== passwordConfirm.current.value)
-    {
+    } else if (password.current.value !== passwordConfirm.current.value) {
       alert("Please check your password.");
-    }
-    else
-    {
+    } else {
       fetch("/registration", {
         method: "POST",
         body: JSON.stringify({
@@ -37,8 +28,7 @@ function SignUp() {
         .then((response) => response.json())
         .then((json) => {
           alert(`Registration ${json.ok ? "succeeded" : "failed"}.`);
-          if (json.ok)
-          {
+          if (json.ok) {
             navigate("/signin");
           }
         });
