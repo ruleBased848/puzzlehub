@@ -10,16 +10,11 @@ function SignIn() {
   const navigate = useNavigate();
 
   const clickHandler = () => {
-    if (username.current.value === "")
-    {
+    if (username.current.value === "") {
       alert("The username is required.");
-    }
-    else if (password.current.value === "")
-    {
+    } else if (password.current.value === "") {
       alert("The password is required.");
-    }
-    else
-    {
+    } else {
       fetch("/authentication", {
         method: "POST",
         body: JSON.stringify({
@@ -30,13 +25,10 @@ function SignIn() {
       })
         .then((response) => response.json())
         .then((json) => {
-          if (json.ok)
-          {
+          if (json.ok) {
             signIn.set(true);
             navigate("/");
-          }
-          else
-          {
+          } else {
             alert(`Authentication failed.`);
           }
         });

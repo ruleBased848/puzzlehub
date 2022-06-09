@@ -8,29 +8,23 @@ import jakarta.servlet.annotation.*;
 import lib.*;
 
 @WebFilter("/members/*")
-public class Members implements Filter
-{
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
-    {
-        try
-        {
+public class Members implements Filter {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
+        try {
             doFilter_(request, response, chain);
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new ServletException(e);
         }
     }
 
     private void doFilter_(ServletRequest request, ServletResponse response, FilterChain chain)
-        throws IOException, ServletException, SQLException
-    {
+        throws IOException, ServletException, SQLException {
         var cookie = new SimpleCookie();
         cookie.setCookies(((HttpServletRequest)request).getCookies());
         var username = cookie.getValue("username");
         var password = cookie.getValue("password");
-        if (username == null || password == null)
-        {
+        if (username == null || password == null) {
             signalFailure(request, response, chain);
         }
 
@@ -39,11 +33,9 @@ public class Members implements Filter
         pStmt.setString(1, username);
         var result = pStmt.executeQuery();
         var authenticated = false;
-        if (result.next())
-        {
+        if (result.next()) {
             var password_ = result.getString("password");
-            if (password_.equals(password))
-            {
+            if (password_.equals(password)) {
                 authenticated = true;
                 request.setAttribute("username", username);
             }
@@ -53,8 +45,8 @@ public class Members implements Filter
         chain.doFilter(request, response);
     }
 
-    private void signalFailure(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException
-    {
+    private void signalFailure(ServletRequest request, ServletResponse response, FilterChain chain)
+        throws IOException, ServletException {
         request.setAttribute("authenticated", false);
         chain.doFilter(request, response);
     }

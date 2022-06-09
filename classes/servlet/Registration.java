@@ -10,34 +10,26 @@ import org.json.simple.parser.*;
 import lib.*;
 
 @WebServlet("/registration")
-public class Registration extends HttpServlet
-{
-    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-    {
-        try
-        {
+public class Registration extends HttpServlet {
+    public void service(HttpServletRequest request, HttpServletResponse response)
+        throws IOException, ServletException {
+        try {
             service_(request, response);
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             throw new ServletException(e);
         }
     }
 
     private void service_(HttpServletRequest request, HttpServletResponse response)
-        throws IOException, SQLException
-    {
+        throws IOException, SQLException {
         var in = request.getReader();
         var json = in.readLine();
         in.close();
 
         JSONObject jo = null;
-        try
-        {
+        try {
             jo = (JSONObject)(new JSONParser().parse(json));
-        }
-        catch (ParseException e)
-        {
+        } catch (ParseException e) {
             var out = response.getWriter();
             out.println("{\"ok\":false}");
             out.close();
@@ -48,12 +40,9 @@ public class Registration extends HttpServlet
         var pStmt = conn.prepareStatement("INSERT INTO users VALUES (?,?)");
         pStmt.setString(1, (String)jo.get("username"));
         pStmt.setString(2, (String)jo.get("password"));
-        try
-        {
+        try {
             pStmt.executeUpdate();
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             var out = response.getWriter();
             out.println("{\"ok\":false}");
             out.close();

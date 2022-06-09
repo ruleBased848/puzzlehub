@@ -10,8 +10,7 @@ const Header = observer(() => {
   const search = useRef(null);
 
   useEffect(() => {
-    if (pageControlState.searchOpen)
-    {
+    if (pageControlState.searchOpen) {
       search.current.focus();
     }
   },

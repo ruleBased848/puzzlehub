@@ -11,74 +11,57 @@ import org.json.simple.parser.*;
 import lib.*;
 
 @WebServlet("/search")
-public class Search extends HttpServlet
-{
-    public void service(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException
-    {
-        try
-        {
+public class Search extends HttpServlet {
+    public void service(HttpServletRequest request, HttpServletResponse response)
+        throws IOException, ServletException {
+        try {
             service_(request, response);
-        }
-        catch (ParseException | SQLException e)
-        {
+        } catch (ParseException | SQLException e) {
             throw new ServletException(e);
         }
     }
 
     @SuppressWarnings("unchecked")
     private void service_(HttpServletRequest request, HttpServletResponse response)
-        throws IOException, ParseException, SQLException
-    {
+        throws IOException, ParseException, SQLException {
         var in = request.getReader();
         var json = in.readLine();
         in.close();
-        if (json == null)
-        {
+        if (json == null) {
             signalFailure(response);
             return;
         }
 
         JSONObject jo = null;
-        try
-        {
+        try {
             jo = (JSONObject)(new JSONParser().parse(json));
-        }
-        catch (ClassCastException | ParseException e)
-        {
+        } catch (ClassCastException | ParseException e) {
             signalFailure(response);
             return;
         }
 
         var itemNum_ = jo.get("itemNum");
-        if (itemNum_ == null)
-        {
+        if (itemNum_ == null) {
             signalFailure(response);
             return;
         }
         long itemNum = 0;
-        try
-        {
+        try {
             itemNum = (long)itemNum_;
-        }
-        catch (ClassCastException e)
-        {
+        } catch (ClassCastException e) {
             signalFailure(response);
             return;
         }
 
         var page_ = jo.get("page");
-        if (page_ == null)
-        {
+        if (page_ == null) {
             signalFailure(response);
             return;
         }
         long page = 0;
-        try
-        {
+        try {
             page = (long)page_;
-        }
-        catch (ClassCastException e)
-        {
+        } catch (ClassCastException e) {
             signalFailure(response);
             return;
         }
@@ -94,8 +77,7 @@ public class Search extends HttpServlet
         jo.put("ok", true);
         jo.put("number", number);
         var ja = new JSONArray();
-        while (result.next())
-        {
+        while (result.next()) {
             var m = new LinkedHashMap(3);
             m.put("username", result.getString("username"));
             m.put("content", (JSONArray)(new JSONParser().parse(result.getString("content"))));
@@ -109,8 +91,7 @@ public class Search extends HttpServlet
         out.close();
     }
 
-    private void signalFailure(HttpServletResponse response) throws IOException
-    {
+    private void signalFailure(HttpServletResponse response) throws IOException {
         var out = response.getWriter();
         out.println("{\"ok\":false}");
         out.close();

@@ -2,10 +2,8 @@ package lib;
 
 import java.sql.*;
 
-public class DBConnection
-{
-    public DBConnection() throws SQLException
-    {
+public class DBConnection {
+    public DBConnection() throws SQLException {
         conn = DriverManager.getConnection(
             "jdbc:mysql://" +
             System.getProperty("DBSERVER") +
@@ -18,13 +16,11 @@ public class DBConnection
         );
     }
 
-    public Statement createStatement() throws SQLException
-    {
+    public Statement createStatement() throws SQLException {
         return conn.createStatement();
     }
 
-    public PreparedStatement prepareStatement(String sql) throws SQLException
-    {
+    public PreparedStatement prepareStatement(String sql) throws SQLException {
         return conn.prepareStatement(sql);
     }
 
