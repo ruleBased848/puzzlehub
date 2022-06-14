@@ -56,7 +56,7 @@
           <execution>
             <phase>package</phase>
             <goals>
-                <goal>shade</goal>
+              <goal>shade</goal>
             </goals>
             <configuration>
               <finalName>${uberjar.name}</finalName>
