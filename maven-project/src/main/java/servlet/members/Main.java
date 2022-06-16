@@ -12,8 +12,10 @@ import lib.*;
 
 @WebServlet("/members/main")
 public class Main extends HttpServlet {
-    public void service(HttpServletRequest request, HttpServletResponse response)
-        throws IOException, ServletException {
+    public void service(
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws IOException, ServletException {
         try {
             service_(request, response);
         } catch (SQLException e) {
@@ -21,8 +23,10 @@ public class Main extends HttpServlet {
         }
     }
 
-    public void service_(HttpServletRequest request, HttpServletResponse response)
-        throws IOException, SQLException {
+    public void service_(
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws IOException, SQLException {
         if (!(boolean)request.getAttribute("authenticated")) {
             var out = response.getWriter();
             out.println("{\"ok\":false,\"reason\":\"not authenticated\"}");

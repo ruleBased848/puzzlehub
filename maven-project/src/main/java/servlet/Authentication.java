@@ -11,8 +11,10 @@ import lib.*;
 
 @WebServlet("/authentication")
 public class Authentication extends HttpServlet {
-    public void service(HttpServletRequest request, HttpServletResponse response)
-        throws IOException, ServletException {
+    public void service(
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws IOException, ServletException {
         try {
             service_(request, response);
         } catch (SQLException e) {
@@ -20,8 +22,10 @@ public class Authentication extends HttpServlet {
         }
     }
 
-    private void service_(HttpServletRequest request, HttpServletResponse response)
-        throws IOException, SQLException {
+    private void service_(
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws IOException, SQLException {
         var in = request.getReader();
         var json = in.readLine();
         in.close();

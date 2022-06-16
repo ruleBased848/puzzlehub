@@ -9,8 +9,11 @@ import lib.*;
 
 @WebFilter("/members/*")
 public class Members implements Filter {
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
-        throws IOException, ServletException {
+    public void doFilter(
+        ServletRequest request,
+        ServletResponse response,
+        FilterChain chain
+    ) throws IOException, ServletException {
         try {
             doFilter_(request, response, chain);
         } catch (SQLException e) {
@@ -18,8 +21,11 @@ public class Members implements Filter {
         }
     }
 
-    private void doFilter_(ServletRequest request, ServletResponse response, FilterChain chain)
-        throws IOException, ServletException, SQLException {
+    private void doFilter_(
+        ServletRequest request,
+        ServletResponse response,
+        FilterChain chain
+    ) throws IOException, ServletException, SQLException {
         var cookie = new SimpleCookie();
         cookie.setCookies(((HttpServletRequest)request).getCookies());
         var username = cookie.getValue("username");
@@ -45,8 +51,11 @@ public class Members implements Filter {
         chain.doFilter(request, response);
     }
 
-    private void signalFailure(ServletRequest request, ServletResponse response, FilterChain chain)
-        throws IOException, ServletException {
+    private void signalFailure(
+        ServletRequest request,
+        ServletResponse response,
+        FilterChain chain
+    ) throws IOException, ServletException {
         request.setAttribute("authenticated", false);
         chain.doFilter(request, response);
     }

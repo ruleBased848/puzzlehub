@@ -12,8 +12,10 @@ import lib.*;
 
 @WebServlet("/search")
 public class Search extends HttpServlet {
-    public void service(HttpServletRequest request, HttpServletResponse response)
-        throws IOException, ServletException {
+    public void service(
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws IOException, ServletException {
         try {
             service_(request, response);
         } catch (ParseException | SQLException e) {
@@ -22,8 +24,10 @@ public class Search extends HttpServlet {
     }
 
     @SuppressWarnings("unchecked")
-    private void service_(HttpServletRequest request, HttpServletResponse response)
-        throws IOException, ParseException, SQLException {
+    private void service_(
+        HttpServletRequest request,
+        HttpServletResponse response
+    ) throws IOException, ParseException, SQLException {
         var in = request.getReader();
         var json = in.readLine();
         in.close();
