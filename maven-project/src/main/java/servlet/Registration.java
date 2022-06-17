@@ -22,7 +22,7 @@ public class Registration extends HttpServlet {
         }
     }
 
-    private void service_(
+    private static void service_(
         HttpServletRequest request,
         HttpServletResponse response
     ) throws IOException, SQLException {

@@ -21,7 +21,7 @@ public class Members implements Filter {
         }
     }
 
-    private void doFilter_(
+    private static void doFilter_(
         ServletRequest request,
         ServletResponse response,
         FilterChain chain
@@ -51,7 +51,7 @@ public class Members implements Filter {
         chain.doFilter(request, response);
     }
 
-    private void signalFailure(
+    private static void signalFailure(
         ServletRequest request,
         ServletResponse response,
         FilterChain chain

@@ -24,7 +24,7 @@ public class Search extends HttpServlet {
     }
 
     @SuppressWarnings("unchecked")
-    private void service_(
+    private static void service_(
         HttpServletRequest request,
         HttpServletResponse response
     ) throws IOException, ParseException, SQLException {
@@ -95,7 +95,7 @@ public class Search extends HttpServlet {
         out.close();
     }
 
-    private void signalFailure(HttpServletResponse response) throws IOException {
+    private static void signalFailure(HttpServletResponse response) throws IOException {
         var out = response.getWriter();
         out.println("{\"ok\":false}");
         out.close();

@@ -23,7 +23,7 @@ public class Main extends HttpServlet {
         }
     }
 
-    public void service_(
+    public static void service_(
         HttpServletRequest request,
         HttpServletResponse response
     ) throws IOException, SQLException {
@@ -71,7 +71,7 @@ public class Main extends HttpServlet {
         out.close();
     }
 
-    private int getCaseNum(String[][] board) {
+    private static int getCaseNum(String[][] board) {
         if (!isValid(board)) {
             return 0;
         }
@@ -106,7 +106,7 @@ public class Main extends HttpServlet {
         return Math.min(acc, limit);
     }
 
-    private boolean isValid(String[][] board) {
+    private static boolean isValid(String[][] board) {
         for (int i = 0; i < 9; ++i) {
             if (!isValidBox(board, i) || !isValidRow(board, i) || !isValidColumn(board, i)) {
                 return false;
@@ -115,7 +115,7 @@ public class Main extends HttpServlet {
         return true;
     }
 
-    private boolean isValidBox(String[][] board, int box) {
+    private static boolean isValidBox(String[][] board, int box) {
         var al = new ArrayList<String>();
         for (int i = 0; i < 9; ++i) {
             var str = board[box][i];
@@ -126,7 +126,7 @@ public class Main extends HttpServlet {
         return areUnique(al);
     }
 
-    private boolean isValidRow(String[][] board, int row) {
+    private static boolean isValidRow(String[][] board, int row) {
         int box = row / 3 * 3;
         int cell = row % 3 * 3;
         var al = new ArrayList<String>();
@@ -141,7 +141,7 @@ public class Main extends HttpServlet {
         return areUnique(al);
     }
 
-    private boolean isValidColumn(String[][] board, int col) {
+    private static boolean isValidColumn(String[][] board, int col) {
         int box = col / 3;
         int cell = col % 3;
         var al = new ArrayList<String>();
@@ -156,7 +156,7 @@ public class Main extends HttpServlet {
         return areUnique(al);
     }
 
-    private boolean areUnique(ArrayList<String> al) {
+    private static boolean areUnique(ArrayList<String> al) {
         Collections.sort(al);
         var size = al.size();
         for (int i = 0; i < size - 1; ++i) {
