@@ -10,6 +10,7 @@
   <groupId>com.rulebased848.app</groupId>
   <artifactId>maven-project</artifactId>
   <version>1.0-SNAPSHOT</version>
+  <packaging>war</packaging>
 
   <name>maven-project</name>
   <!-- FIXME change it to the project's website -->
@@ -49,6 +50,7 @@
   </dependencies>
 
   <build>
+    <finalName>ROOT</finalName>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
@@ -70,8 +72,8 @@
           <version>2.22.1</version>
         </plugin>
         <plugin>
-          <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.2.2</version>
         </plugin>
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
