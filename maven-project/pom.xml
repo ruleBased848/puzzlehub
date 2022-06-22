@@ -17,6 +17,7 @@
   <packaging>war</packaging>
 
   <name>maven-project</name>
+  <description>Puzzle hub back-end</description>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
