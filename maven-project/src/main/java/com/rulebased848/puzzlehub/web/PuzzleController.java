@@ -14,40 +14,11 @@ public class PuzzleController {
     private PuzzleRepository repo;
 
     @RequestMapping("/search")
-    public String searchPuzzles(@RequestBody String json) throws ParseException {
-        JSONObject jo = null;
-        try {
-            jo = (JSONObject)(new JSONParser().parse(json));
-        } catch (ClassCastException | ParseException e) {
-            return "{\"ok\":false}";
-        }
-
-        var itemNum_ = jo.get("itemNum");
-        if (itemNum_ == null) {
-            return "{\"ok\":false}";
-        }
-        int itemNum = 0;
-        try {
-            itemNum = (int)(long)itemNum_;
-        } catch (ClassCastException e) {
-            return "{\"ok\":false}";
-        }
-
-        var page_ = jo.get("page");
-        if (page_ == null) {
-            return "{\"ok\":false}";
-        }
-        int page = 0;
-        try {
-            page = (int)(long)page_;
-        } catch (ClassCastException e) {
-            return "{\"ok\":false}";
-        }
-
-        var pageRequest = PageRequest.of(page - 1, itemNum, Sort.by(Sort.Direction.DESC, "createdAt", "id"));
+    public String searchPuzzles(@RequestBody SearchRequest req) throws ParseException {
+        var pageRequest = PageRequest.of(req.getPage() - 1, req.getItemNum(), Sort.by(Sort.Direction.DESC, "createdAt", "id"));
         var result = repo.getPuzzlesWithPaging(pageRequest).getContent();
 
-        jo = new JSONObject();
+        var jo = new JSONObject();
         jo.put("ok", true);
         jo.put("number", repo.getCountOfPuzzles());
         var ja = new JSONArray();
