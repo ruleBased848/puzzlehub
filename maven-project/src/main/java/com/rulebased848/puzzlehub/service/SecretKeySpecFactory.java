@@ -1,15 +1,20 @@
 package com.rulebased848.puzzlehub.service;
 
-import java.security.*;
-import javax.crypto.spec.*;
-import org.springframework.beans.factory.annotation.*;
-import io.jsonwebtoken.*;
-
 public class SecretKeySpecFactory implements KeyFactory {
-    @Value("${jwt.secret}")
-    private static String key;
+    private String key;
 
-    public Key getKey(SignatureAlgorithm alg) {
-        return new SecretKeySpec(key.getBytes(), alg.getJcaName());
+    SecretKeySpecFactory() {
+        var p = new java.util.Properties();
+        try {
+            p.load(new java.io.FileReader("src/main/resources/application.propertie"));
+        } catch (java.io.IOException e) {
+            key = null;
+            return;
+        }
+        key = p.getProperty("jwt.secret");
+    }
+
+    public java.security.Key getKey(io.jsonwebtoken.SignatureAlgorithm alg) {
+        return new javax.crypto.spec.SecretKeySpec(key.getBytes(), alg.getJcaName());
     }
 }
