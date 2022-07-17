@@ -6,7 +6,7 @@ public class SecretKeySpecFactory implements KeyFactory {
     SecretKeySpecFactory() {
         var p = new java.util.Properties();
         try {
-            p.load(new java.io.FileReader("src/main/resources/application.propertie"));
+            p.load(new java.io.FileReader("src/main/resources/application.properties"));
         } catch (java.io.IOException e) {
             key = null;
             return;
