@@ -17,12 +17,15 @@ public class SecurityConfig {
     private UserDetailsServiceImpl userDetailsService;
     @Autowired
     private com.rulebased848.puzzlehub.filter.AuthenticationFilter authenticationFilter;
+    @Autowired
+    private AuthEntryPoint exceptionHandler;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
             .csrf().disable()
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+            .exceptionHandling().authenticationEntryPoint(exceptionHandler).and()
             .addFilterBefore(authenticationFilter, org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
