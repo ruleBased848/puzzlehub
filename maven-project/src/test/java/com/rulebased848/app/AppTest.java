@@ -1,11 +1,16 @@
 package com.rulebased848.app;
 
-import static org.junit.Assert.assertTrue;
-import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThat;
 
+@org.springframework.boot.test.context.SpringBootTest
 public class AppTest {
+    @Autowired
+    private com.rulebased848.puzzlehub.web.LoginController controller;
+
     @Test
-    public void shouldAnswerWithTrue() {
-        assertTrue(true);
+    public void contextLoads() {
+        assertThat(controller).isNotNull();
     }
 }
